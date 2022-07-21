@@ -12,6 +12,7 @@ export async function main(ns) {
 	while (true) {
 		await weaken(ns, hostname);
 		await grow(ns, hostname);
+		await weaken(ns, hostname);
 		await hack(ns, hostname);
 	}
 }

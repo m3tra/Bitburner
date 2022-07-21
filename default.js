@@ -1,20 +1,17 @@
 /** @param {import('.').NS} ns */
+import { weaken, grow, hack } from './Delivery/attack.js'
 export async function main(ns) {
 // Send hostname as argument
-	var hostname = ns.args[0];
-	var minSec = ns.getServerMinSecurityLevel(hostname);
-	var maxMoney = ns.getServerMaxMoney(hostname);
-	var currSec;
-	var currMoney;
+	var hostname;
+	
+	if (!ns.args[0] || ns.args.length != 1) {
+		ns.tprint("Required target hostname as only argument");
+		return;
+	}
+	hostname = ns.args[0];
 	while (true) {
-		currSec = ns.getServerSecurityLevel(hostname);
-		currMoney = ns.getServerMoneyAvailable(hostname);
-		if (currSec >= minSec + 2) {
-			await ns.weaken(hostname);
-		} else if (currMoney <= maxMoney - 20000) {
-			ns.grow(hostname);
-		} else {
-			await ns.hack(hostname);
-		}
+		await weaken(ns, hostname);
+		await grow(ns, hostname);
+		await hack(ns, hostname);
 	}
 }

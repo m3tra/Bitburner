@@ -31,21 +31,17 @@ export async function spreadToOwnedServers(ns, files) {
 }
 
 export async function main(ns) {
-	var target;
 	var files;
+	var target;
 	let servers = scanNetwork(ns);
 
+	files = ns.ls("home", "Delivery");	
 	if (!ns.args[0] || ns.args.length != 1) {
-		ns.tprint("Required target hostname as only argument (use 'all' to spread to servers with root access)");
-		return;
-	}
-	target = ns.args[0];
-	files = ns.ls("home", "Delivery");
-	if (target == "all") {
 		getOwnedServers(ns, 0, servers);
 		printOwnedServers(ns);
 		await spreadToOwnedServers(ns, files);
+		return;
 	}
-	else
-		await ns.scp(files, target);
+	target = ns.args[0];
+	await ns.scp(files, target);
 }

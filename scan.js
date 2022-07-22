@@ -6,7 +6,7 @@ function scan(ns, host) {
 }
 
 /** @param {import('.').NS} ns */
-function getInfo(ns, host){
+function getInfo(ns, host) {
 	return {
 		'name': host,
 		'growth': ns.getServerGrowth(host),
@@ -31,11 +31,11 @@ function crawl(ns, list) {
 		}
 		//ns.print("Scanning ", element)
 		scanned.push(element)
-		let childs = crawl(ns, scan(ns, element));
+		let children = crawl(ns, scan(ns, element));
 		let server = getInfo(ns, element);
-		if (childs.length != 0) {
+		if (children.length != 0) {
 			server['has_child'] = true
-			server['childs'] = childs
+			server['children'] = children
 		} else {
 			server['has_child'] = false
 		}
@@ -45,7 +45,7 @@ function crawl(ns, list) {
 }
 
 /** @param {import('.').NS} ns */
-function infoToPrint(ns, server){
+function infoToPrint(ns, server) {
 	let plvl = ns.getPlayer().hacking
 	let ret = server['name']
 	ret += ' - '
@@ -71,10 +71,10 @@ function print_servers(ns, server, indent) {
 	}
 	if (!server['has_child'])
 		return ret
-	for (let i = 0; i < server['childs'].length; i++) {
-		const e = server['childs'][i];
+	for (let i = 0; i < server['children'].length; i++) {
+		const e = server['children'][i];
 		ns.print(e)
-		ret += print_servers(ns, e, indent+1)
+		ret += print_servers(ns, e, indent + 1)
 	}
 	return ret
 }
@@ -83,5 +83,5 @@ function print_servers(ns, server, indent) {
 export async function main(ns) {
 	ns.disableLog('ALL')
 	let all = scanNetwork(ns)
-	ns.tprint('\n',print_servers(ns, all, 0))
+	ns.tprint('\n', print_servers(ns, all, 0))
 }

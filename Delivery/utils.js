@@ -32,9 +32,9 @@ export function getPurchasedServerMaxRam(ns) { ns.getPurchasedServerMaxRam(); }
 export function getPurchasedServers(ns) { ns.getPurchasedServers(); }
 export function getRecentScripts(ns) { ns.getRecentScripts(); }
 export function getRunningScript(ns, filename, hostname, args) { ns.getRunningScript(filename, hostname, args); }
-export function getScriptExpGain(ns) { ns.getScriptExpGain(); }
+//export function getScriptExpGain(ns) { ns.getScriptExpGain(); }
 export function getScriptExpGain(ns, script, host, args) { ns.getScriptExpGain(script, host, args); }
-export function getScriptIncome(ns) { ns.getScriptIncome(); }
+//export function getScriptIncome(ns) { ns.getScriptIncome(); }
 export function getScriptIncome(ns, script, host, args) { ns.getScriptIncome(script, host, args); }
 export function getScriptLogs(ns, fn, host, args) { ns.getScriptLogs(fn, host, args); }
 export function getScriptName(ns) { ns.getScriptName(); }
@@ -66,7 +66,7 @@ export function hasRootAccess(ns, host) { ns.hasRootAccess(host); }
 export function httpworm(ns, host) { ns.httpworm(host); }
 export function isLogEnabled(ns, fn) { ns.isLogEnabled(fn); }
 export function isRunning(ns, script, host, args) { ns.isRunning(script, host, args); }
-export function kill(ns, script) { ns.kill(script); }
+//export function kill(ns, script) { ns.kill(script); }
 export function kill(ns, script, host, args) { ns.kill(script, host, args); }
 export function killall(ns, host, safetyguard) { ns.killall(host, safetyguard); }
 export function ls(ns, host, grep) { ns.ls(host, grep); }
@@ -85,7 +85,7 @@ export function relaysmtp(ns, host) { ns.relaysmtp(host); }
 export function rm(ns, name, host) { ns.rm(name, host); }
 export function run(ns, script, numThreads, args) { ns.run(script, numThreads, args); }
 export function scan(ns, host) { ns.scan(host); }
-export function scp(ns, files, destination) { ns.scp(files, destination); }
+//export function scp(ns, files, destination) { ns.scp(files, destination); }
 export function scp(ns, files, source, destination) { ns.scp(files, source, destination); }
 export function scriptKill(ns, script, host) { ns.scriptKill(script, host); }
 export function scriptRunning(ns, script, host) { ns.scriptRunning(script, host); }

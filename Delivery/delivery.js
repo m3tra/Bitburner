@@ -11,7 +11,7 @@ export function getOwnedServers(ns, i, server) {
 			currServer = server['children'][i];
 			if (currServer['has_child'])
 				getOwnedServers(ns, i, currServer);
-			if (ns.hasRootAccess(currServer['name']))
+			if (!ownedServers.includes(currServer['name']) && ns.hasRootAccess(currServer['name']))
 				ownedServers.push(currServer['name']);
 		}
 	}

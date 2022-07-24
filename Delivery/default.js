@@ -1,5 +1,5 @@
-/** @param {import('.').NS} ns */
 import { weaken, grow, hack } from './Delivery/attack.js'
+/** @param {import('.').NS} ns */
 export async function main(ns) {
 	// Send hostname as argument
 	var hostname;

@@ -1,4 +1,4 @@
-/** @param {NS} ns */
+/** @param {import('.').NS} ns */
 export async function weaken(ns, hostname) {
 	let minSec = ns.getServerMinSecurityLevel(hostname);
 	let currSec = ns.getServerSecurityLevel(hostname);
@@ -14,6 +14,7 @@ export async function weaken(ns, hostname) {
 	}
 }
 
+/** @param {import('.').NS} ns */
 export async function grow(ns, hostname) {
 	let maxMoney = ns.getServerMaxMoney(hostname);
 	let currMoney = ns.getServerMoneyAvailable(hostname);
@@ -30,6 +31,7 @@ export async function grow(ns, hostname) {
 	}
 }
 
+/** @param {import('.').NS} ns */
 export async function hack(ns, hostname) {
 	await ns.hack(hostname);
 }

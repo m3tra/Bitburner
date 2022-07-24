@@ -1,4 +1,4 @@
-/** @param {NS} ns */
+/** @param {import('.').NS} ns */
 import { scanNetwork } from './scan.js'
 // import * as namespace from './scan.js'
 
@@ -7,6 +7,7 @@ let best = {
 	'maxMoney': 0,
 };
 
+/** @param {import('.').NS} ns */
 export function availableHacks(ns) {
 	let hacks = ["BruteSSH.exe", "FTPCrack.exe", "relaySMTP.exe", "HTTPWorm.exe", "SQLInject.exe"];
 	let ownedHacks = [];
@@ -17,6 +18,7 @@ export function availableHacks(ns) {
 	return ownedHacks;
 }
 
+/** @param {import('.').NS} ns */
 export function nAvailableHacks(ns) {
 	let ownedHacks = availableHacks(ns);
 	let nHacks = 0;
@@ -27,6 +29,7 @@ export function nAvailableHacks(ns) {
 	return nHacks;
 }
 
+/** @param {import('.').NS} ns */
 export function canHack(ns, server) {
 	let playerHackLvl = ns.getHackingLevel();
 
@@ -35,6 +38,7 @@ export function canHack(ns, server) {
 	return true;
 }
 
+/** @param {import('.').NS} ns */
 export async function pwnServer(ns, hostname) {
 	if (!canHack(ns, hostname))
 		return;
@@ -47,6 +51,7 @@ export async function pwnServer(ns, hostname) {
 	// ns.installBackdoor();
 }
 
+/** @param {import('.').NS} ns */
 export function findBestTarget(ns, server, best) {
 	let currServer;
 
@@ -66,6 +71,7 @@ export function findBestTarget(ns, server, best) {
 	return best;
 }
 
+/** @param {import('.').NS} ns */
 export async function main(ns) {
 	let servers = scanNetwork(ns);
 	let target = findBestTarget(ns, servers, best);

@@ -55,6 +55,7 @@ function infoToPrint(ns, server) {
 	return ret
 }
 
+/** @param {import('.').NS} ns */
 export function scanNetwork(ns) {
 	scanned = []
 	return crawl(ns, ['home'])[0]

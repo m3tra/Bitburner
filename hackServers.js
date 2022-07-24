@@ -47,7 +47,8 @@ function procServer(ns, server){
 export async function main(ns) {
 	ns.disableLog('ALL');
 	(ns.ls('home')).forEach(element => {
-		if (element != "fl1ght.exe" && element != "NUKE.exe" && element.endsWith('.exe') && !hacks.includes(element))
+		if (!["fl1ght.exe", "NUKE.exe", "AutoLink.exe", "Formulas.exe", "DeepscanV1.exe", "DeepscanV2.exe", "ServerProfiler.exe"].includes(element)
+			&& element.endsWith('.exe') && !hacks.includes(element))
 			hacks.push(element)
 	});
 	procServer(ns, scanNetwork(ns))

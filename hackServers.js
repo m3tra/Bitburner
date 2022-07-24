@@ -4,13 +4,25 @@ var hacks = []
 
 /** @param {import('.').NS} ns */
 function tryHack(ns, server) {
-	if (server['ports_req'] >= (hacks.length))
+	if (server['ports_req'] > (hacks.length))
 		return
 	for (let i = 0; i < server['ports_req']; i++) {
 		const e = hacks[i];
 		switch (e) {
-			case "value":
-
+			case "BruteSSH.exe":
+				ns.brutessh(server['name'])
+				break;
+			case "FTPCrack.exe":
+				ns.ftpcrack(server['name'])
+				break;
+			case "relaySMTP.exe":
+				ns.relaysmtp(server['name'])
+				break;
+			case "HTTPWorm.exe":
+				ns.httpworm(server['name'])
+				break;
+			case "SQLInject.exe":
+				ns.sqlinject(server['name'])
 				break;
 		}
 	}
@@ -35,7 +47,7 @@ function procServer(ns, server){
 export async function main(ns) {
 	ns.disableLog('ALL');
 	(ns.ls('home')).forEach(element => {
-		if (element.endsWith('.exe') && !hacks.includes(element))
+		if (element != "fl1ght.exe" && element != "NUKE.exe" && element.endsWith('.exe') && !hacks.includes(element))
 			hacks.push(element)
 	});
 	procServer(ns, scanNetwork(ns))

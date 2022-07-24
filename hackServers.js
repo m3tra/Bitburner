@@ -1,6 +1,7 @@
 import {scanNetwork} from "scan.js"
 
 var hacks = []
+var count = 0
 
 /** @param {import('.').NS} ns */
 function tryHack(ns, server) {
@@ -27,6 +28,7 @@ function tryHack(ns, server) {
 		}
 	}
 	ns.print("nuking: ", server['name'])
+	count++
 	ns.nuke(server['name'])
 }
 
@@ -41,6 +43,8 @@ function procServer(ns, server){
 		}
 	if (!ns.hasRootAccess(server['name']))
 		tryHack(ns, server)
+	else
+		count++
 }
 
 /** @param {import('.').NS} ns */
@@ -51,5 +55,7 @@ export async function main(ns) {
 			&& element.endsWith('.exe') && !hacks.includes(element))
 			hacks.push(element)
 	});
+	count = 0
 	procServer(ns, scanNetwork(ns))
+	ns.tprint("You have access to ", count, " servers.")
 }

@@ -7,12 +7,14 @@ function runOnServer(ns, server, target){
 			const e = server['children'][i];
 			runOnServer(ns, e, target)
 		}
-	if (ns.hasRootAccess(server['name'])){
+	if (ns.hasRootAccess(server['name']) && server['name'] != 'home'){
 		//let ram = ns.getScriptRam("default.js")
 		let ram = 3.5
 		let thread = Math.floor(server['max_ram'] / ram)
-		ns.print("lauching on: ", server['name']," with threads: ", thread)
-		ns.exec("Delivery/default.js", server['name'], thread, target)
+		if (thread > 0) {
+			ns.print("lauching on: ", server['name']," with threads: ", thread)
+			ns.exec("Delivery/default.js", server['name'], thread, target)
+		}
 	}
 }
 
